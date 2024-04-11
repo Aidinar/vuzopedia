@@ -1,5 +1,5 @@
-import window
+import window_b
 
 
 
-window.run2()
+window_b.run2()
