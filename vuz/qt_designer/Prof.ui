@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>945</width>
-    <height>802</height>
+    <height>794</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -328,8 +328,8 @@ border-radius: 20px;
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>200</y>
+      <x>30</x>
+      <y>160</y>
       <width>351</width>
       <height>51</height>
      </rect>
@@ -361,8 +361,8 @@ border-radius: 20px;
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>310</y>
+      <x>30</x>
+      <y>280</y>
       <width>351</width>
       <height>51</height>
      </rect>
@@ -397,8 +397,8 @@ border-radius: 20px;
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>160</y>
+      <x>30</x>
+      <y>120</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -415,8 +415,8 @@ border-radius: 20px;
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>280</y>
+      <x>30</x>
+      <y>220</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -428,6 +428,60 @@ border-radius: 20px;
     </property>
     <property name="text">
      <string>Введите пароль</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>340</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Введите город</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>390</y>
+      <width>351</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit 
+{
+	backround:transparent;
+	border:none;
+	color:#717072;
+	border-bottom:1px solid #717072;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Normal</enum>
+    </property>
+    <property name="cursorPosition">
+     <number>0</number>
+    </property>
+    <property name="placeholderText">
+     <string>City</string>
     </property>
    </widget>
   </widget>

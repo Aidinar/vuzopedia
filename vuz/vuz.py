@@ -5,17 +5,18 @@ from PyQt6.QtWidgets import QApplication, QMainWindow
 import sys
 import points
 
-
-
 app = QtWidgets.QApplication(sys.argv)
 MainWindow = QtWidgets.QMainWindow()
-
 def run():
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec())
-
+def run():
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec())
 
 class Ui_MainWindow(object):
     def open_points_window(self, window_class):
@@ -156,11 +157,6 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "Вузы"))
         self.label_5.setText(_translate("MainWindow", "Профессии"))
         self.label_6.setText(_translate("MainWindow", "Профиль"))
-
-
-
-
-
 
 
 if __name__ == "__main__": 
