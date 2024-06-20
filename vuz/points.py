@@ -3,20 +3,29 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QApplication, QMainWindow
 import sys
 
+import vuz
+
 
 app = QApplication(sys.argv)
 
+MainWindow = QtWidgets.QMainWindow()
 
-from window_v import *
-print(ee)
+class Ui_MainWindow2(object):
+    def open_points_window(self, window_class):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = window_class()
+        self.ui.setupUi(self.window)
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(855, 673)
-        MainWindow.setStyleSheet("\n"
+        MainWindow.close()
+
+        self.window.show()
+    
+    def setupUi(self, MainWindow2):
+        MainWindow2.setObjectName("MainWindow2")
+        MainWindow2.resize(855, 673)
+        MainWindow2.setStyleSheet("\n"
         "background-color: rgb(251, 248, 255);")
-        self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
+        self.centralwidget = QtWidgets.QWidget(parent=MainWindow2)
         self.centralwidget.setObjectName("centralwidget")
         self.pushButton_6 = QtWidgets.QPushButton(parent=self.centralwidget)
         self.pushButton_6.setGeometry(QtCore.QRect(20, 10, 81, 51))
@@ -53,6 +62,9 @@ class Ui_MainWindow(object):
         self.pushButton_3.setIcon(icon2)
         self.pushButton_3.setIconSize(QtCore.QSize(60, 50))
         self.pushButton_3.setObjectName("pushButton_3")
+
+        self.pushButton_3.clicked.connect(lambda: self.open_points_window(vuz.Ui_MainWindow))
+
         self.pushButton_5 = QtWidgets.QPushButton(parent=self.centralwidget)
         self.pushButton_5.setGeometry(QtCore.QRect(510, 590, 71, 51))
         self.pushButton_5.setToolTipDuration(-1)
@@ -260,33 +272,33 @@ class Ui_MainWindow(object):
         self.pushButton.setObjectName("pushButton")
         self.formLayout.setWidget(20, QtWidgets.QFormLayout.ItemRole.FieldRole, self.pushButton)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        MainWindow.setCentralWidget(self.centralwidget)
+        MainWindow2.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(MainWindow2)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow2)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, MainWindow2):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Главное окно "))
-        self.label.setText(_translate("MainWindow", "Vuzopedia"))
-        self.label_2.setText(_translate("MainWindow", "Баллы"))
-        self.label_4.setText(_translate("MainWindow", "Вузы"))
-        self.label_5.setText(_translate("MainWindow", "Профессии"))
-        self.label_6.setText(_translate("MainWindow", "Профиль"))
-        self.label_3.setText(_translate("MainWindow", "ВВедите балл"))
-        self.label_7.setText(_translate("MainWindow", "Баллы"))
-        self.label_14.setText(_translate("MainWindow", "История"))
-        self.label_11.setText(_translate("MainWindow", "Физика"))
-        self.label_10.setText(_translate("MainWindow", "Информатика и ИКТ"))
-        self.label_15.setText(_translate("MainWindow", "Иностранный язык"))
-        self.label_9.setText(_translate("MainWindow", "Русский язык"))
-        self.label_8.setText(_translate("MainWindow", "Математика"))
-        self.label_17.setText(_translate("MainWindow", "География"))
-        self.label_16.setText(_translate("MainWindow", "Литература "))
-        self.label_18.setText(_translate("MainWindow", "Биология"))
-        self.label_12.setText(_translate("MainWindow", "Химия"))
-        self.label_13.setText(_translate("MainWindow", "Обществознание"))
-        self.pushButton.setText(_translate("MainWindow", "Сохранить"))
+        MainWindow2.setWindowTitle(_translate("MainWindow2", "Главное окно "))
+        self.label.setText(_translate("MainWindow2", "Vuzopedia"))
+        self.label_2.setText(_translate("MainWindow2", "Баллы"))
+        self.label_4.setText(_translate("MainWindow2", "Вузы"))
+        self.label_5.setText(_translate("MainWindow2", "Профессии"))
+        self.label_6.setText(_translate("MainWindow2", "Профиль"))
+        self.label_3.setText(_translate("MainWindow2", "ВВедите балл"))
+        self.label_7.setText(_translate("MainWindow2", "Баллы"))
+        self.label_14.setText(_translate("MainWindow2", "История"))
+        self.label_11.setText(_translate("MainWindow2", "Физика"))
+        self.label_10.setText(_translate("MainWindow2", "Информатика и ИКТ"))
+        self.label_15.setText(_translate("MainWindow2", "Иностранный язык"))
+        self.label_9.setText(_translate("MainWindow2", "Русский язык"))
+        self.label_8.setText(_translate("MainWindow2", "Математика"))
+        self.label_17.setText(_translate("MainWindow2", "География"))
+        self.label_16.setText(_translate("MainWindow2", "Литература "))
+        self.label_18.setText(_translate("MainWindow2", "Биология"))
+        self.label_12.setText(_translate("MainWindow2", "Химия"))
+        self.label_13.setText(_translate("MainWindow2", "Обществознание"))
+        self.pushButton.setText(_translate("MainWindow2", "Сохранить"))
 
 
 
@@ -298,19 +310,11 @@ class Window(QMainWindow):
         self.setGeometry(800, 200, 600, 500)
 
 
-
-
-
-def run():
-    window = Window()
-    window.show()
-    sys.exit(app.exec())
     
 
 
 def run2():
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_MainWindow2()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec())
