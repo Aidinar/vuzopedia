@@ -1,7 +1,25 @@
 import sqlite3
 from PyQt6 import QtCore, QtGui, QtWidgets
+import sys
+
+import points
+import vuz
+
+
+app = QtWidgets.QApplication(sys.argv)
+Dialog = QtWidgets.QDialog()
 
 class Ui_Dialog(object):
+    def open_window(self, window_class):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = window_class()
+        self.ui.setupUi(self.window)
+
+        Dialog.close()
+
+        self.window.show()
+
+
     def save_user(self):
         self.conn = sqlite3.connect('database.db')
         self.c = self.conn.cursor()
@@ -43,6 +61,7 @@ class Ui_Dialog(object):
         self.pushButton_2.setIcon(icon)
         self.pushButton_2.setIconSize(QtCore.QSize(60, 60))
         self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_2.clicked.connect(lambda: self.open_window(points.Ui_MainWindow2))
         self.pushButton_6 = QtWidgets.QPushButton(parent=Dialog)
         self.pushButton_6.setGeometry(QtCore.QRect(20, 20, 121, 71))
         self.pushButton_6.setText("")
@@ -92,6 +111,7 @@ class Ui_Dialog(object):
         self.pushButton_3.setIcon(icon2)
         self.pushButton_3.setIconSize(QtCore.QSize(90, 70))
         self.pushButton_3.setObjectName("pushButton_3")
+        self.pushButton_3.clicked.connect(lambda: self.open_window(vuz.Ui_MainWindow))
         self.pushButton_4 = QtWidgets.QPushButton(parent=Dialog)
         self.pushButton_4.setGeometry(QtCore.QRect(780, 670, 121, 71))
         self.pushButton_4.setToolTipDuration(-1)
@@ -101,6 +121,9 @@ class Ui_Dialog(object):
         self.pushButton_4.setIcon(icon3)
         self.pushButton_4.setIconSize(QtCore.QSize(60, 60))
         self.pushButton_4.setObjectName("pushButton_4")
+        
+
+
         self.pushButton_5 = QtWidgets.QPushButton(parent=Dialog)
         self.pushButton_5.setGeometry(QtCore.QRect(530, 670, 121, 71))
         self.pushButton_5.setToolTipDuration(-1)
@@ -266,15 +289,14 @@ class Ui_Dialog(object):
         self.lineEdit_3.setPlaceholderText(_translate("Dialog", "City"))
 
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
+def run4():
     ui = Ui_Dialog()
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec())
+
+if __name__ == "__main__":
+     run4()
 
 
 

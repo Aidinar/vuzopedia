@@ -1,9 +1,12 @@
 from PyQt6 import *
 from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLineEdit
 import sys
+import sqlite3
 
 import vuz
+import Profil
+
 
 
 app = QApplication(sys.argv)
@@ -11,6 +14,7 @@ app = QApplication(sys.argv)
 MainWindow = QtWidgets.QMainWindow()
 
 class Ui_MainWindow2(object):
+
     def open_points_window(self, window_class):
         self.window = QtWidgets.QMainWindow()
         self.ui = window_class()
@@ -20,7 +24,11 @@ class Ui_MainWindow2(object):
 
         self.window.show()
     
+    
     def setupUi(self, MainWindow2):
+            
+
+
         MainWindow2.setObjectName("MainWindow2")
         MainWindow2.resize(855, 673)
         MainWindow2.setStyleSheet("\n"
@@ -83,6 +91,7 @@ class Ui_MainWindow2(object):
         self.pushButton_4.setIcon(icon4)
         self.pushButton_4.setIconSize(QtCore.QSize(45, 45))
         self.pushButton_4.setObjectName("pushButton_4")
+        self.pushButton_4.clicked.connect(lambda: self.open_points_window(Profil.Ui_Dialog))
         self.label_2 = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_2.setGeometry(QtCore.QRect(70, 640, 101, 31))
         font = QtGui.QFont()
@@ -154,10 +163,10 @@ class Ui_MainWindow2(object):
         self.label_14.setFont(font)
         self.label_14.setObjectName("label_14")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_14)
-        self.spinBox_10 = QtWidgets.QSpinBox(parent=self.scrollAreaWidgetContents)
-        self.spinBox_10.setMaximum(100)
-        self.spinBox_10.setObjectName("spinBox_10")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.spinBox_10)
+        self.points_input = QLineEdit()
+
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.points_input)
+
         self.label_11 = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
         font = QtGui.QFont()
         font.setFamily("Microsoft Sans Serif")
@@ -270,6 +279,9 @@ class Ui_MainWindow2(object):
         self.formLayout.setWidget(16, QtWidgets.QFormLayout.ItemRole.FieldRole, self.spinBox_2)
         self.pushButton = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
         self.pushButton.setObjectName("pushButton")
+
+        self.pushButton.clicked.connect(lambda: self.open_points_window(vuz.Ui_MainWindow))
+        
         self.formLayout.setWidget(20, QtWidgets.QFormLayout.ItemRole.FieldRole, self.pushButton)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         MainWindow2.setCentralWidget(self.centralwidget)
@@ -298,7 +310,7 @@ class Ui_MainWindow2(object):
         self.label_18.setText(_translate("MainWindow2", "Биология"))
         self.label_12.setText(_translate("MainWindow2", "Химия"))
         self.label_13.setText(_translate("MainWindow2", "Обществознание"))
-        self.pushButton.setText(_translate("MainWindow2", "Сохранить"))
+        self.pushButton.setText(_translate("MainWindow2", "Поиск"))
 
 
 

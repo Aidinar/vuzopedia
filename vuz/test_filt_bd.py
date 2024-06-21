@@ -51,7 +51,7 @@ class DatabaseViewer(QMainWindow):
 
             # Добавляем новые блоки с данными
             for row in rows:
-                group_box = QGroupBox(f"ID: {row[0]} | Name: {row[1]}")
+                group_box = QGroupBox(f"ID: {row[0]} | Univer: {row[1]}")
                 group_box_layout = QVBoxLayout(group_box)
                 group_box_layout.addWidget(QLabel(f"Items: {row[2]}"))
                 group_box_layout.addWidget(QLabel(f"Points: {row[3]}"))

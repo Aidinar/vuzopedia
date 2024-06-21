@@ -1,33 +1,29 @@
-
+import sqlite3
 from PyQt6 import *
 from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QLineEdit, QPushButton, QLabel, QGroupBox, QScrollArea
+
 import sys
 import points
+import Profil
 
 app = QtWidgets.QApplication(sys.argv)
 MainWindow = QtWidgets.QMainWindow()
-def run():
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec())
-def run():
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec())
+
+
 
 class Ui_MainWindow(object):
+   
+
     def open_points_window(self, window_class):
         self.window = QtWidgets.QMainWindow()
         self.ui = window_class()
         self.ui.setupUi(self.window)
 
-        MainWindow.close()
+        self.window.close()  # закрыть текущее окно
+
+        self.window.show()  # открыть новое окно
         
-        self.window.show()
-            
         
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -128,6 +124,7 @@ class Ui_MainWindow(object):
         self.pushButton_4.setIcon(icon4)
         self.pushButton_4.setIconSize(QtCore.QSize(45, 45))
         self.pushButton_4.setObjectName("pushButton_4")
+        self.pushButton_4.clicked.connect(lambda: self.open_points_window(Profil.Ui_Dialog))
         self.label_6 = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_6.setGeometry(QtCore.QRect(720, 640, 111, 31))
         font = QtGui.QFont()
@@ -148,6 +145,48 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.scroll_area = QtWidgets.QScrollArea(parent=self.centralwidget)
+        self.scroll_area.setGeometry(QtCore.QRect(200, 150, 500, 400))
+        self.scroll_area.setObjectName("scroll_area")
+
+        with sqlite3.connect("main.db") as db:
+            ui = points.Ui_MainWindow2()
+            # points_value = ui.points_input.text()
+            # Используйте значение points_value
+            cursor = db.cursor()
+            # if points_value:
+            #     cursor.execute("SELECT * FROM Universities WHERE Points >= ?", (points_value,))
+            #     print("111111111111111111")
+            # else:
+            cursor.execute("SELECT * FROM Universities")
+            print("22222222222")
+            rows = cursor.fetchall()
+            
+
+            self.content_widget = QWidget()
+            self.content_layout = QVBoxLayout(self.content_widget)
+            
+
+            # Add new data blocks
+            for row in rows:
+                group_box = QGroupBox(f"ID: {row[0]} | Университет: {row[1]}")
+                group_box_layout = QVBoxLayout(group_box)
+                group_box_layout.addWidget(QLabel(f"Предмет: {row[2]}"))
+                group_box_layout.addWidget(QLabel(f"Балл: {row[3]}"))
+                group_box_layout.addWidget(QLabel(f"Город: {row[4]}"))
+                group_box.setStyleSheet("background-color: #f0f0f0; border: 2px solid #e0e0e0; border-radius: 5px; padding: 10px;")
+                group_box_layout.setSpacing(10)
+                self.content_layout.addWidget(group_box)
+                group_box.setMinimumWidth(400)
+
+            self.scroll_area.setWidget(self.content_widget)
+
+
+        
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -158,6 +197,11 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "Профессии"))
         self.label_6.setText(_translate("MainWindow", "Профиль"))
 
+def run():
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec())
 
 if __name__ == "__main__": 
     run()
